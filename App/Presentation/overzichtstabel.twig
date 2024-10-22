@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>overzichtstabel scores</title>
+    <link rel="stylesheet" href="Public/css/opmaak.css">
+
+</head>
+<body>
+    {% include "navigatie.twig" %}
+
+    {% if error is not empty %}
+       <p class="error"> {{ error }} </p>
+    {% else %}
+
+        <h1>Puntentabel</h1> 
+        
+        <table>
+            <tr>
+                <th>Student</th>
+                    {% for module in hoofdTabel[0].modules %}
+                        <th class="auto"><a href="tabelModuleController.php?module={{ module.module.getModuleId }}">{{ module.module.getNaam }}</a></th>
+                    {% endfor %}
+            </tr>
+            {% for scoreObject in hoofdTabel %}
+                <tr>
+                    <td><a href="tabelStudentController.php?student={{ scoreObject.student.getStudentenId }}">{{ scoreObject.student.getVolledigeNaam }}</a> </td>
+                    {% for module in scoreObject.modules %}
+                        <td class="center">{{ module.score }}{% if module.score is not empty %}/100{% endif %}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    
+    {% endif %}
+</body>
+</html>

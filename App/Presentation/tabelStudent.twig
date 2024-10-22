@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabel scores student</title>
+    <link rel="stylesheet" href="Public/css/opmaak.css">
+
+</head>
+<body>
+    {% include "navigatie.twig" %}
+
+
+    {% if error is not empty %}
+       <p class="error"> {{ error }} </p>
+    {% else %}
+
+        <h1>Scores van: {{gezochteStudent.student.getVolledigeNaam}}</h1> 
+
+        <h2>Studenteninfo</h2>
+        <hr>
+        <p>Geboortedatum: {{gezochteStudent.student.getGeboorteDatum}}</p>
+        <p>Geslacht: {{gezochteStudent.student.getGeslacht}}</p>
+
+        <h2>Scores</h2>
+        <hr>
+        
+        <table>
+            <tr>
+                <th>Module</th>
+                <th>Score</th>
+            </tr>
+            {% for module in gezochteStudent.modules %}
+                {% if module.score is not empty %}
+                    <tr>
+                        <td>{{module.module.getNaam}}</td>
+                        <td class="center">{{ module.score }}/100</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    
+    {% endif %}
+</body>
+</html>

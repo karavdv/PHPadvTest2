@@ -1,0 +1,21 @@
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.auto {
+    column-width: auto;
+    padding: 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 5px;
+    
+}
+

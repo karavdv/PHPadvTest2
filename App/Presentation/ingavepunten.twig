@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="nl"> 
+<head> 
+    <meta charset="UTF-8">
+    <title>Ingave punten</title>
+    <link rel="stylesheet" href="Public/css/opmaak.css">
+</head>
+
+<body>
+    {% include "navigatie.twig" %}
+
+    <h1>Ingave punten</h1>
+    
+    <p>Selecteer de student en module waarvoor u de resultaten wil invoegen.</p>
+
+    {% if error is not empty %}
+       <p class="error"> {{ error }} </p>
+    {% endif %}
+
+    <form action="controleIngavePuntenController.php" method="POST"> 
+        <label for="student">Student: </label>
+        <select name="student" id="student" >
+            <option value="-1"> Selecteer een student </option>
+            {% for student in studentenLijst %}
+                <option value="{{student.getStudentenId}}">{{student.getStudentenId}} {{student.getVolledigeNaam}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="module">Module: </label>
+        <select name="module" id="module" >
+            <option value="-1"> Selecteer een module </option>
+            {% for module in moduleLijst %}
+                <option value="{{module.getModuleId}}">{{module.getModuleId}} {{module.getNaam}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
+        <label for="punten">Punten: </label>
+        <input type="number" step=".01" name="punten" id="punten" ><br><br>
+
+        <input type="submit" value="Voeg toe" name="btnResultaat"> 
+    </form>
+
+</body>
+</html>
